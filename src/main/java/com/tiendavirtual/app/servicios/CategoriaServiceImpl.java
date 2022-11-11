@@ -20,7 +20,7 @@ public class CategoriaServiceImpl implements CategoriaService{
 	@Override
 	public Categoria findById(Long id) {
 		
-		return categoriaRepository.findById(id).get();
+		return categoriaRepository.findById(id).orElse(null);
 	}
 
 	@Override
