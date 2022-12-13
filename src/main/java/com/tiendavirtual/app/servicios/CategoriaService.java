@@ -14,4 +14,6 @@ public interface CategoriaService {
 	
 	void deleteById(Long id);
 	
+	List<Categoria> findByNombreStartsWith(String nombre);
+	
 }
