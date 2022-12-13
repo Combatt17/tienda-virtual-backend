@@ -35,4 +35,10 @@ public class CategoriaServiceImpl implements CategoriaService{
 		
 	}
 
+	@Override
+	public List<Categoria> findByNombreStartsWith(String nombre) {
+	
+		return categoriaRepository.findByNombreStartsWith(nombre);
+	}
+
 }

@@ -47,4 +47,10 @@ public class Producto {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
+
+    @PrePersist
+    public void prePersist() {
+    	this.fechaRegistro = LocalDate.now();
+    }
+
 }

@@ -17,7 +17,9 @@ public class DetallePedido {
     private Long id;
 
     //Relacion de clases//
-    @ManyToOne(fetch = FetchType.EAGER) //1//
+
+    @OneToOne(fetch = FetchType.LAZY) //1//
+
     @JoinColumn(name = "pedido_id") //2//
     private Pedido pedido;
 

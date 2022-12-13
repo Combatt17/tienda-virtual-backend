@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,8 +19,10 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
+
     @Column(name = "fecha_pedido")
     private LocalDate fechaPedido;
+
     @Column(name = "total")
     private BigDecimal total;
 
@@ -25,4 +30,10 @@ public class Pedido {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
+
+    @PrePersist
+    public void prePersist() {
+    	this.fechaPedido = LocalDate.now();
+    }
+
 }

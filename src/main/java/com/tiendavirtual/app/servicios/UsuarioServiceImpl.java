@@ -1,5 +1,6 @@
 package com.tiendavirtual.app.servicios;
 
+
 import com.tiendavirtual.app.entidades.Usuario;
 import com.tiendavirtual.app.repositorios.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,5 @@ public class UsuarioServiceImpl implements UsuarioService{
     public Optional<Usuario> findOneByEmail(String email) {
         return usuarioRepository.findOneByEmail(email);
     }
-
-
 }
+

@@ -33,15 +33,18 @@ public class Categoria {
 	private Long id;
 	
 	@Column(name="nombre")
-	@NotNull(message = "El nombre es requerido")
-	@Size(message = "El nombre debe tener al menos dos caracteres",min=2)
+
+	//@NotNull(message = "El nombre es requerido")
+	//@Size(message = "El nombre debe tener al menos dos caracteres",min=2)
+
 	private String nombre;
 	
 	@Column(name="estado")
 	@Enumerated(value = EnumType.STRING)
 	private Estado estado;
 	// Agregamos la Relacion de uno a Muchos//
-	@OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
+
+	@OneToMany(cascade = CascadeType.MERGE)
 	@JoinColumn(name="subcategoria")
 	private List<Categoria> subCategoria;
 }

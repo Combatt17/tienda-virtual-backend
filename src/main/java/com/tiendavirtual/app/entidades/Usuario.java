@@ -20,6 +20,7 @@ public class Usuario {
 
     @Column(name = "email")
     private String email;
+
     @Column(name = "password")
     private String password;
 
@@ -40,7 +41,8 @@ public class Usuario {
     private Rol rol;
 
     @PrePersist
-    public void prePersit(){
-        fechaRegistro = LocalDate.now();
+    public void prePersist() {
+    	this.fechaRegistro = LocalDate.now();
+
     }
 }

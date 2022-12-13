@@ -1,7 +1,8 @@
 package com.tiendavirtual.app.security;
 
-import com.tiendavirtual.app.security.jwt.JWTEntryPoint;
-import com.tiendavirtual.app.security.jwt.JWTTokenFilter;
+
+import com.tiendavirtual.app.security.jwt.JwtEntryPoint;
+import com.tiendavirtual.app.security.jwt.JwtTokenFilter;
 import com.tiendavirtual.app.servicios.UserDetailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -9,28 +10,27 @@ import org.springframework.context.annotation.Configuration;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetailsService;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 public class MainSecurity {
     @Autowired
-    JWTEntryPoint jwtEntryPoint;
+    JwtEntryPoint jwtEntryPoint;
     @Autowired
     UserDetailServiceImpl userDetailsService;
 
     @Bean
-    public JWTTokenFilter jwtTokenFilter(){
-        return new JWTTokenFilter();
+    public JwtTokenFilter jwtTokenFilter(){
+        return new JwtTokenFilter();
     }
 
     @Bean
@@ -38,6 +38,8 @@ public class MainSecurity {
         return http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/api/auth/**").permitAll()
+                .antMatchers("/api/categorias/**").permitAll()
+                .antMatchers("/api/productos/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(jwtEntryPoint)

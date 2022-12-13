@@ -3,6 +3,9 @@ package com.tiendavirtual.app.servicios;
 import java.util.ArrayList;
 import java.util.List;
 
+
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -40,12 +43,14 @@ public class ProductoServiceImpl implements ProductoService{
 		return productoRepository.findById(id).orElse(null);
 	}
 
+	@Transactional
 	@Override
 	public void save(Producto producto) {
 		productoRepository.save(producto);
 		
 	}
 
+	@Transactional
 	@Override
 	public void deleteById(Long id) {
 		productoRepository.deleteById(id);
